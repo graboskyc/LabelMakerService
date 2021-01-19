@@ -35,13 +35,19 @@ Thus, for each object it will create `n` number of labels where `n` is the `qty`
 * Install dotnet core tooling 
 * Install docker
 
+## ENV Variables
+* `nb` - new build version
+* `gskyaddressbookuri` - the URL of the REST API that returns data in the format listed above
+* `gskyapipw` - the password you want to provide on this service. You then access this service with the `?password=<whateveryouputhere>` query parameter
+* `gskyctrver` - leave as-is, referencing the `nb` variable. This gets passed into the container so the container knows what version of code it is running
+
 ## Building
 * Copy the `sample.env` to `.env` 
-* Change the `.env` webhook URL to that which returns the API format
+* Change the `.env` as described above
 * Run the `build.sh`
 
 ## Running
-* After running the `build.sh` (or if you pulled from DockerHub and just run the last line of `build.sh`), visit `http://localhost:9666` and a PDF should be downloaded
+* After running the `build.sh` (or if you pulled from DockerHub and just run the last line of `build.sh`), visit `http://localhost:9666?password=<whatever you set in the .env>` and a PDF should be downloaded
 
 ## Third Party Libraries
 * [SharpPDFLabel](https://github.com/finalcut/SharpPDFLabel)
