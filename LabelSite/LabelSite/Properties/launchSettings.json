@@ -14,7 +14,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "gskyctrver":"reallynotset",
-        "gskyaddressbookuri":"https://foo.com/api/addressBook"
+        "gskyaddressbookuri":"https://foo.com/api/addressBook",
+        "gskyapipw":"password"
       }
     },
     "LabelSite": {
@@ -24,7 +25,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "gskyctrver":"reallynotset",
-        "gskyaddressbookuri":"https://foo.com/api/addressBook"
+        "gskyaddressbookuri":"https://foo.com/api/addressBook",
+        "gskyapipw":"password"
       }
     }
   }

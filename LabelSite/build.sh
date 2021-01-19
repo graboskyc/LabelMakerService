@@ -28,7 +28,7 @@ echo
 
 docker stop scbls
 docker rm scbls
-docker run -t -i -d -p 9666:80 --name scbls --restart unless-stopped -e "gskyctrver=${nb}" -e "gskyaddressbookuri=${gskyaddressbookuri}" graboskyc/scbcarnival-labelsite:v${nb}
+docker run -t -i -d -p 9666:80 --name scbls --restart unless-stopped -e "gskyctrver=${nb}" -e "gskyaddressbookuri=${gskyaddressbookuri}"  -e "gskyapipw=${gskyapipw}" graboskyc/scbcarnival-labelsite:v${nb}
 
 echo
 echo "+======================"
