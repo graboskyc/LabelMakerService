@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="iTextSharp" Version="5.5.13.2" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
@@ -13,7 +14,7 @@
       <HintPath>..\..\..\..\Downloads\SharpPDFLabel-master\SharpPDFLabel-master\bin\Debug\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="SharpPDFLabel">
-      <HintPath>..\..\..\..\Downloads\SharpPDFLabel-master\SharpPDFLabel-master\bin\Debug\SharpPDFLabel.dll</HintPath>
+      <HintPath>..\..\..\SharpPDFLabel\bin\Debug\SharpPDFLabel.dll</HintPath>
     </Reference>
   </ItemGroup>
 

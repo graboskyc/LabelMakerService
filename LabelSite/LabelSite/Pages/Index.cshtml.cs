@@ -22,7 +22,7 @@ namespace LabelSite.Pages
             _logger = logger;
         }
 
-        public FileStreamResult OnGet(string password)
+        public FileStreamResult OnGet(string password, int offset=0, string hide="")
         {
             // pdf setup
             Response.Headers.Add("Content-Disposition", "attachment; filename=address_labels.pdf");
@@ -31,6 +31,8 @@ namespace LabelSite.Pages
             System.IO.Stream pdfStream = null;
 
             if(password == Environment.GetEnvironmentVariable("gskyapipw")) {
+                string[] hideArray = hide.Split(",");
+
                 // uri of the webhook
                 // see readme.md for format being returned
                 string uri = Environment.GetEnvironmentVariable("gskyaddressbookuri");
@@ -46,6 +48,15 @@ namespace LabelSite.Pages
                     var jsonstring = resp.Content.ReadAsStringAsync();
                     jsonstring.Wait();
                     orders = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Order>>(jsonstring.Result);
+
+                    // put n number of blank labels
+                    // useful to reuse a half-used sheet
+                    int skip = 0;
+                    while(skip < offset) {
+                        skip++;
+                        var label = new Label(Enums.Alignment.CENTER);
+                        customLabelCreator.AddLabel(label);
+                    }
                     
                     // set the first label to be details about the job
                     var headerLbl = new Label(Enums.Alignment.LEFT);
@@ -65,14 +76,30 @@ namespace LabelSite.Pages
                         {
                             var label = new Label(Enums.Alignment.CENTER);
                             label.AddText(myTI.ToTitleCase(o.name.Trim().ToLower()), "Verdana", 10, embedFont: true, SharpPDFLabel.Enums.FontStyle.BOLD);
-                            label.AddText("OID: " + o._id + " SKU: " + o.sku + " #" + i.ToString() + "/" + o.qty.ToString(), "Verdana", 8, embedFont: true, SharpPDFLabel.Enums.FontStyle.ITALIC);
-                            label.AddText(o.email.ToLower(), "Verdana", 8, embedFont: true, SharpPDFLabel.Enums.FontStyle.ITALIC);
-                            label.AddText(o.address.line1, "Verdana", 10, embedFont: true);
-                            if (o.address.line2.Length > 1)
-                            {
-                                label.AddText(o.address.line2, "Verdana", 10, embedFont: true);
+
+                            var productLine = "";
+                            if(!hideArray.Contains("OID")) { productLine += "OID: " + o._id + " "; }
+                            if(!hideArray.Contains("SKU")) { productLine += "SKU: " + o.sku + " "; }
+                            if(!hideArray.Contains("qty")) { productLine += "#" + i.ToString() + "/" + o.qty.ToString(); }
+                            label.AddText(productLine, "Verdana", 8, embedFont: true, SharpPDFLabel.Enums.FontStyle.ITALIC);
+
+                            if(!hideArray.Contains("email")) {
+                                label.AddText(o.email.ToLower(), "Verdana", 8, embedFont: true, SharpPDFLabel.Enums.FontStyle.ITALIC);
                             }
-                            label.AddText(o.address.city + ", " + o.address.state + " " + o.address.zip, "Verdana", 10, embedFont: true);
+
+                            if(!hideArray.Contains("phone")) {
+                                label.AddText(o.phone, "Verdana", 8, embedFont: true);
+                            }
+
+                            if(!hideArray.Contains("address")) {
+                                label.AddText(o.address.line1, "Verdana", 10, embedFont: true);
+                                if (o.address.line2.Length > 1)
+                                {
+                                    label.AddText(o.address.line2, "Verdana", 10, embedFont: true);
+                                }
+                                label.AddText(o.address.city + ", " + o.address.state + " " + o.address.zip, "Verdana", 10, embedFont: true);
+                            }
+
                             customLabelCreator.AddLabel(label);
                             i++;
                         }
@@ -100,6 +127,7 @@ namespace LabelSite.Pages
         public Address address { get; set; }
         public string sku { get; set; }
         public string email { get; set; }
+        public string phone {get; set;}
     }
 
     public class Address
