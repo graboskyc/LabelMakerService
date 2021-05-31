@@ -26,7 +26,7 @@ namespace LabelSite.Pages
         {
             // pdf setup
             Response.Headers.Add("Content-Disposition", "attachment; filename=address_labels.pdf");
-            var labelDefinition = new SharpPDFLabel.Labels.A4Labels.Avery.L5160();
+            var labelDefinition = new SharpPDFLabel.Labels.A4Labels.Avery.L6870();
             var customLabelCreator = new SharpPDFLabel.CustomLabelCreator(labelDefinition);
             System.IO.Stream pdfStream = null;
 
@@ -92,12 +92,12 @@ namespace LabelSite.Pages
                             }
 
                             if(!hideArray.Contains("address")) {
-                                label.AddText(o.address.line1, "Verdana", 10, embedFont: true);
+                                label.AddText(o.address.line1, "Verdana", 8, embedFont: true);
                                 if (o.address.line2.Length > 1)
                                 {
-                                    label.AddText(o.address.line2, "Verdana", 10, embedFont: true);
+                                    label.AddText(o.address.line2, "Verdana", 8, embedFont: true);
                                 }
-                                label.AddText(o.address.city + ", " + o.address.state + " " + o.address.zip, "Verdana", 10, embedFont: true);
+                                label.AddText(o.address.city + ", " + o.address.state + " " + o.address.zip, "Verdana", 8, embedFont: true);
                             }
 
                             customLabelCreator.AddLabel(label);
