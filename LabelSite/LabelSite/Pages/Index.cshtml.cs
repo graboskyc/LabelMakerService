@@ -75,29 +75,29 @@ namespace LabelSite.Pages
                         while (i <= o.qty)
                         {
                             var label = new Label(Enums.Alignment.CENTER);
-                            label.AddText(myTI.ToTitleCase(o.name.Trim().ToLower()), "Verdana", 10, embedFont: true, SharpPDFLabel.Enums.FontStyle.BOLD);
+                            label.AddText(myTI.ToTitleCase(o.name.Trim().ToLower()), "Verdana", 8, embedFont: true, SharpPDFLabel.Enums.FontStyle.BOLD);
 
                             var productLine = "";
                             if(!hideArray.Contains("OID")) { productLine += "OID: " + o._id + " "; }
                             if(!hideArray.Contains("SKU")) { productLine += "SKU: " + o.sku + " "; }
                             if(!hideArray.Contains("qty")) { productLine += "#" + i.ToString() + "/" + o.qty.ToString(); }
-                            label.AddText(productLine, "Verdana", 8, embedFont: true, SharpPDFLabel.Enums.FontStyle.ITALIC);
+                            label.AddText(productLine, "Verdana", 6, embedFont: true, SharpPDFLabel.Enums.FontStyle.ITALIC);
 
                             if(!hideArray.Contains("email")) {
-                                label.AddText(o.email.ToLower(), "Verdana", 8, embedFont: true, SharpPDFLabel.Enums.FontStyle.ITALIC);
+                                label.AddText(o.email.ToLower(), "Verdana", 6, embedFont: true, SharpPDFLabel.Enums.FontStyle.ITALIC);
                             }
 
                             if(!hideArray.Contains("phone")) {
-                                label.AddText(o.phone, "Verdana", 8, embedFont: true);
+                                label.AddText(o.phone, "Verdana", 6, embedFont: true);
                             }
 
                             if(!hideArray.Contains("address")) {
-                                label.AddText(o.address.line1, "Verdana", 8, embedFont: true);
+                                label.AddText(o.address.line1, "Verdana", 6, embedFont: true);
                                 if (o.address.line2.Length > 1)
                                 {
-                                    label.AddText(o.address.line2, "Verdana", 8, embedFont: true);
+                                    label.AddText(o.address.line2, "Verdana", 6, embedFont: true);
                                 }
-                                label.AddText(o.address.city + ", " + o.address.state + " " + o.address.zip, "Verdana", 8, embedFont: true);
+                                label.AddText(o.address.city + ", " + o.address.state + " " + o.address.zip, "Verdana", 6, embedFont: true);
                             }
 
                             customLabelCreator.AddLabel(label);
