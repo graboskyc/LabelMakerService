@@ -13,9 +13,9 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "gskyctrver":"reallynotset",
-        "gskyaddressbookuri":"https://foo.com/api/addressBook",
-        "gskyapipw":"password"
+        "lblmkrctrver":"reallynotset",
+        "lblmkraddressbookuri":"https://foo.com/api/addressBook",
+        "lblmkrapipw":"password"
       }
     },
     "LabelSite": {
@@ -24,9 +24,9 @@
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "gskyctrver":"reallynotset",
-        "gskyaddressbookuri":"https://foo.com/api/addressBook",
-        "gskyapipw":"password"
+        "lblmkrctrver":"reallynotset",
+        "lblmkraddressbookuri":"https://foo.com/api/addressBook",
+        "lblmkrapipw":"password"
       }
     }
   }

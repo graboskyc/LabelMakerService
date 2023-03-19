@@ -30,12 +30,12 @@ namespace LabelSite.Pages
             var customLabelCreator = new SharpPDFLabel.CustomLabelCreator(labelDefinition);
             System.IO.Stream pdfStream = null;
 
-            if(password == Environment.GetEnvironmentVariable("gskyapipw")) {
+            if(password == Environment.GetEnvironmentVariable("lblmkrapipw")) {
                 string[] hideArray = hide.Split(",");
 
                 // uri of the webhook
                 // see readme.md for format being returned
-                string uri = Environment.GetEnvironmentVariable("gskyaddressbookuri");
+                string uri = Environment.GetEnvironmentVariable("lblmkraddressbookuri");
                 List<Order> orders = null;
 
                 var client = new HttpClient();
@@ -61,7 +61,7 @@ namespace LabelSite.Pages
                     // set the first label to be details about the job
                     var headerLbl = new Label(Enums.Alignment.LEFT);
                     headerLbl.AddText("Server: " + System.Environment.MachineName,"Verdana", 12, embedFont: true, SharpPDFLabel.Enums.FontStyle.BOLD);
-                    headerLbl.AddText("Build: " + Environment.GetEnvironmentVariable("gskyctrver"),"Verdana", 12, embedFont: true);
+                    headerLbl.AddText("Build: " + Environment.GetEnvironmentVariable("lblmkrctrver"),"Verdana", 12, embedFont: true);
                     headerLbl.AddText("Reqstr: " + Request.HttpContext.Connection.RemoteIpAddress,"Verdana", 10, embedFont: true);
                     headerLbl.AddText("Printed at:","Verdana", 8, embedFont: true);
                     headerLbl.AddText(DateTime.Now.ToString("o", CultureInfo.CreateSpecificCulture("en-US")),"Verdana", 8, embedFont: true);
