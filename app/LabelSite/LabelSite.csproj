@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,10 +11,10 @@
 
   <ItemGroup>
     <Reference Include="itextsharp">
-      <HintPath>..\..\..\..\Downloads\SharpPDFLabel-master\SharpPDFLabel-master\bin\Debug\itextsharp.dll</HintPath>
+      <HintPath>/libs/itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="SharpPDFLabel">
-      <HintPath>..\..\..\SharpPDFLabel\bin\Debug\SharpPDFLabel.dll</HintPath>
+      <HintPath>/libs/SharpPDFLabel.dll</HintPath>
     </Reference>
   </ItemGroup>
 

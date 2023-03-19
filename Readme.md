@@ -31,15 +31,14 @@ An HTTP GET webhook is required which returns the following format:
 Thus, for each object it will create `n` number of labels where `n` is the `qty` field. Thus, the above will create 5 labels with the same address and details but labeled `1/5` then `2/5` etc.
 
 ## Prerequisites
-* Tested in Ubuntu 20.04 WSL
-* Install dotnet core tooling 
-* Install docker
+* Tested in Ubuntu 22.04 LTS
+* Install docker cli and docker-compose
 
 ## ENV Variables
 * `nb` - new build version
-* `gskyaddressbookuri` - the URL of the REST API that returns data in the format listed above
-* `gskyapipw` - the password you want to provide on this service. You then access this service with the `?password=<whateveryouputhere>` query parameter
-* `gskyctrver` - leave as-is, referencing the `nb` variable. This gets passed into the container so the container knows what version of code it is running
+* `lblmkraddressbookuri` - the URL of the REST API that returns data in the format listed above
+* `lblmkrapipw` - the password you want to provide on this service. You then access this service with the `?password=<whateveryouputhere>` query parameter
+* `lblmkrctrver` - leave as-is, referencing the `nb` variable. This gets passed into the container so the container knows what version of code it is running
 
 ## Building
 * Copy the `sample.env` to `.env` 
@@ -47,8 +46,9 @@ Thus, for each object it will create `n` number of labels where `n` is the `qty`
 * Run the `build.sh`
 
 ## Running
-* After running the `build.sh` (or if you pulled from DockerHub and just run the last line of `build.sh`), visit `http://localhost:9666?password=<whatever you set in the .env>` and a PDF should be downloaded
+* After running the "docker-compose build" and "docker-compose up -d", visit `http://localhost:8078?password=<whatever you set in the .env>` and a PDF should be downloaded
+* MAKE SURE YOU HAVE YOUR FIREWALL CONFIGURED IF YOU WANNA ROUTE THIS THROUGH SOMETHING LIKE AN APACHE VIRTUAL HOST TO FORCE HTTPS (otherwise what's the point?)
 
 ## Third Party Libraries
-* [SharpPDFLabel](https://github.com/finalcut/SharpPDFLabel)
+* [SharpPDFLabel](https://github.com/finalcut/SharpPDFLabel, there is a forked version for us here: https://github.com/graboskyc/SharpPDFLabel)
 * [iTextSharp](https://www.nuget.org/packages/iTextSharp/)

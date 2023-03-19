@@ -1,5 +1,6 @@
 
-LabelSite/.env
-LabelSite/.vs
-LabelSite/LabelSite/bin
-LabelSite/LabelSite/obj
+.env
+external/
+app/LabelSite/.vs
+app/LabelSite/bin
+app/LabelSite/obj

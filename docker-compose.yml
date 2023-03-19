@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  labelsite:
+    build: ./docker/LabelSite
+    volumes:
+      - ./app:/app
+      - ./external:/external
+      - ./libs:/libs
+    ports:
+      - '8078:80'
+    environment:
+      lblmkrctrver: ${nb}
+      lblmkraddressbookuri: ${lblmkraddressbookuri}
+      lblmkrapipw: ${lblmkrapipw}
