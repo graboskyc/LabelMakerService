@@ -1,14 +1,35 @@
 version: "3.9"
 services:
-  labelsite:
+  labelsite_app:
     build: ./docker/LabelSite
     volumes:
       - ./app:/app
       - ./external:/external
       - ./libs:/libs
-    ports:
-      - '8078:80'
     environment:
       lblmkrctrver: ${nb}
       lblmkraddressbookuri: ${lblmkraddressbookuri}
       lblmkrapipw: ${lblmkrapipw}
+  #Don't actually need composer currently, but why not include the functionality if needed later?
+  labelsite_composer:
+    image: composer/composer:latest
+    command: update --ignore-platform-req=ext-gd
+    volumes:
+      - ./site:/app
+  labelsite_php-fpm:
+    build: ./docker/php-fpm
+    volumes:
+      - ./site:/var/www/html
+    links:
+      - labelsite_app
+    environment:
+      lblmkrapipw: ${lblmkrapipw}
+  labelsite_fe:
+    build: ./docker/nginx
+    volumes:
+      - ./site:/var/www/html
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - '8042:80'
+    links:
+      - labelsite_php-fpm

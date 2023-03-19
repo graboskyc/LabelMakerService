@@ -1,5 +1,6 @@
-
 .env
+site/public/storage/*
+!site/public/storage/.gitkeep
 external/
 app/LabelSite/.vs
 app/LabelSite/bin

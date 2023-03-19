@@ -37,7 +37,7 @@ Thus, for each object it will create `n` number of labels where `n` is the `qty`
 ## ENV Variables
 * `nb` - new build version
 * `lblmkraddressbookuri` - the URL of the REST API that returns data in the format listed above
-* `lblmkrapipw` - the password you want to provide on this service. You then access this service with the `?password=<whateveryouputhere>` query parameter
+* `lblmkrapipw` - the password you want to provide on this service. You then access this service with this value on the frontend
 * `lblmkrctrver` - leave as-is, referencing the `nb` variable. This gets passed into the container so the container knows what version of code it is running
 
 ## Building
@@ -46,7 +46,7 @@ Thus, for each object it will create `n` number of labels where `n` is the `qty`
 * Run the `build.sh`
 
 ## Running
-* After running the "docker-compose build" and "docker-compose up -d", visit `http://localhost:8078?password=<whatever you set in the .env>` and a PDF should be downloaded
+* After running the "docker-compose build" and "docker-compose up -d", visit `http://localhost:8042`, enter the password and any parameters a PDF should be downloaded
 * MAKE SURE YOU HAVE YOUR FIREWALL CONFIGURED IF YOU WANNA ROUTE THIS THROUGH SOMETHING LIKE AN APACHE VIRTUAL HOST TO FORCE HTTPS (otherwise what's the point?)
 
 ## Third Party Libraries
